@@ -22,13 +22,7 @@ pipeline {
             }
         }
 
-        stage('Generate Coverage Report') {
-            steps {
-                sh 'npm run coverage || true'
-            }
-        }
-
-        stage('NPM Audit (Security Scan)') {
+        stage('Security Scan') {
             steps {
                 sh 'npm audit || true'
             }
