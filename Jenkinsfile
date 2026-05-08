@@ -3,7 +3,7 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
                 git branch: 'main',
                 url: 'https://github.com/Sakka-arch/8.2CDevSecOps.git'
@@ -26,6 +26,24 @@ pipeline {
             steps {
                 sh 'npm audit || true'
             }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Build stage complete (no build step required for this app)'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline finished.'
+        }
+        success {
+            echo 'SUCCESS: Pipeline completed successfully.'
+        }
+        failure {
+            echo 'FAILED: Check logs.'
         }
     }
 }
